@@ -2,17 +2,16 @@ class Phrase
 
 
 	attr_reader :word_count
+	attr_accessor :words
 
 	def initialize(words)
-		sort_to_hash(split_phrase(words))
+		@words = words
+		sort_to_hash()
 	end
 
-	def split_phrase(words)
-		words.split(/\W/)
-	end
-
-	def sort_to_hash(splitted_words)
-		@word_count = Hash.new(0)
+	def sort_to_hash()
+		splitted_words = @words.split(/\W/)
+    @word_count = Hash.new(0)
 		splitted_words.each do |word|
 			formate_word(word)
 			if !word.empty? 
